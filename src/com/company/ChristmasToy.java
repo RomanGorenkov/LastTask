@@ -48,4 +48,12 @@ public class ChristmasToy {
 
         return Objects.hash(size, color);
     }
+
+    @Override
+    public String toString() {
+        return "ChristmasToy{" +
+                "size=" + size +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }

@@ -11,7 +11,7 @@ public class ChristmasTree {
          this.name = name;
      }
 
-    public void PutOnTree(ChristmasToy toy,ChristmasTree tree){
+    public void putOnTree(ChristmasToy toy,ChristmasTree tree){
         tree.getPull().add(toy);
     }
     public void getInfo(ChristmasTree tree){
@@ -19,7 +19,9 @@ public class ChristmasTree {
         System.out.format("Дерево: %s\nЧисло игрушек: %d\nПараметры игрушек:\n",tree.name,tree.getPull().size());
          for (int i =0;i<tree.getPull().size();i++){
              ChristmasToy toy = tree.getPull().get(i);
-             System.out.format("Игрушка № %d\nРазмер %d\nЦвет %s\n",i+1,toy.getSize(),toy.getColor());
+             System.out.format("---------------------------\n" +
+                     "Игрушка № %d\nРазмер %d\nЦвет %s\n" +
+                     "---------------------------\n",i+1,toy.getSize(),toy.getColor());
              if (toy.getColor() == "Красный"){
                 countOfRed++;
              }
@@ -33,6 +35,20 @@ public class ChristmasTree {
                 return Collator.getInstance().compare(o1, o2);
             }
         });
+     }
+
+     public void sort1(ChristmasTree tree){
+
+         Collections.sort(tree.getPull(), new MyComparator() {
+         });
+     }
+
+     public void sort2(ChristmasTree tree){
+         TreeSet sortedSet = new TreeSet( new MyComparator());
+         sortedSet.addAll(tree.getPull());
+         tree.getPull().clear();
+         tree.getPull().addAll(new LinkedList<ChristmasToy> (sortedSet));
+
      }
 
     public List<ChristmasToy> getPull() {
